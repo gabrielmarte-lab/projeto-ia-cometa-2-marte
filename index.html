@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Projeto escolar em tema sci-fi sobre o que e IA, como funciona, estudo com IA e uso seguro."
+      content="Projeto escolar interativo em tema sci-fi sobre IA: conceito, funcionamento, estudo inteligente e seguranca digital."
     />
     <title>Projeto Nova | Entendendo IA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="reading-progress" aria-hidden="true"></div>
     <div class="stars" aria-hidden="true"></div>
     <div class="scanline" aria-hidden="true"></div>
 
@@ -29,24 +30,30 @@
         <ul id="menu" class="menu">
           <li><a href="#about">O que e IA?</a></li>
           <li><a href="#mission">Como Funciona</a></li>
+          <li><a href="#journey">Linha do Tempo</a></li>
           <li><a href="#gallery">Estudo e Seguranca</a></li>
+          <li><a href="#quiz">Quiz</a></li>
+          <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Creditos</a></li>
         </ul>
       </nav>
 
       <section class="hero-content container">
         <p class="eyebrow">COLEGIO COMETA // TURMA 2&deg; MARTE // 2026</p>
-        <h1>Inteligencia Artificial: aprender, estudar e usar com seguranca</h1>
+        <h1 id="hero-title">Inteligencia Artificial: aprender, estudar e usar com seguranca</h1>
         <p class="lead">
           Este projeto apresenta o conceito de IA, explica como ela funciona e
           mostra como estudantes podem usa-la a favor do aprendizado sem riscos.
         </p>
-        <a href="#about" class="btn">Iniciar Jornada</a>
+        <div class="hero-actions">
+          <a href="#about" class="btn">Iniciar Jornada</a>
+          <a href="#quiz" class="btn ghost">Testar Conhecimento</a>
+        </div>
       </section>
     </header>
 
     <main>
-      <section id="about" class="section container">
+      <section id="about" class="section container reveal">
         <h2>O que e Inteligencia Artificial?</h2>
         <p class="muted">
           A Inteligencia Artificial (IA) e uma area da tecnologia que cria sistemas
@@ -55,9 +62,23 @@
           A IA nao pensa como uma pessoa: ela analisa dados e calcula respostas
           provaveis com base no que aprendeu.
         </p>
+        <div class="facts-grid">
+          <article class="fact-card">
+            <h3>IA Generativa</h3>
+            <p>Cria textos, imagens, audio e ideias com base em exemplos anteriores.</p>
+          </article>
+          <article class="fact-card">
+            <h3>IA Analitica</h3>
+            <p>Encontra padroes em dados para ajudar em previsoes e decisoes.</p>
+          </article>
+          <article class="fact-card">
+            <h3>IA no Dia a Dia</h3>
+            <p>Presente em tradutores, recomendacoes, mapas e assistentes virtuais.</p>
+          </article>
+        </div>
       </section>
 
-      <section id="mission" class="section container panel">
+      <section id="mission" class="section container panel reveal">
         <h2>Como a IA funciona</h2>
         <div class="grid">
           <article class="card">
@@ -85,46 +106,118 @@
         </div>
       </section>
 
-      <section id="gallery" class="section container">
+      <section id="journey" class="section container reveal">
+        <h2>Linha do tempo da IA</h2>
+        <div class="timeline">
+          <article class="timeline-item">
+            <span class="timeline-year">1956</span>
+            <p>Nasce o termo "Inteligencia Artificial" na conferencia de Dartmouth.</p>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-year">1997</span>
+            <p>O computador Deep Blue vence um campeao mundial de xadrez.</p>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-year">2016</span>
+            <p>AlphaGo supera jogadores de elite em um jogo considerado muito complexo.</p>
+          </article>
+          <article class="timeline-item">
+            <span class="timeline-year">Hoje</span>
+            <p>Ferramentas de IA apoiam estudo, trabalho e criatividade em escala global.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="gallery" class="section container reveal">
         <h2>IA para estudo e uso seguro</h2>
         <p class="muted">
           A IA pode ser uma grande aliada nos estudos quando usada com
           responsabilidade e limites claros.
         </p>
         <div class="grid">
-          <article class="media-card">
+          <article class="media-card tip-card" data-tip="1">
             <img
               src="assets/estudo-ia.svg"
               alt="Ilustracao de estudo com IA"
               class="media-image"
             />
+            <h3>Estudo inteligente</h3>
             <p>
               Use IA para resumir conteudos, criar perguntas de revisao, montar
               planos de estudo e receber explicacoes em linguagem simples.
             </p>
+            <button class="tip-button" type="button">Ver dica pratica</button>
+            <p class="tip-extra">Experimente: "Explique este tema como se eu tivesse 15 anos".</p>
           </article>
-          <article class="media-card">
+          <article class="media-card tip-card" data-tip="2">
             <img
               src="assets/pensamento-critico.svg"
               alt="Ilustracao de pensamento critico"
               class="media-image"
             />
+            <h3>Pensamento critico</h3>
             <p>
               Nao dependa totalmente da IA. Evite copiar respostas prontas: use o
               apoio da ferramenta e depois escreva com suas proprias palavras.
             </p>
+            <button class="tip-button" type="button">Ver dica pratica</button>
+            <p class="tip-extra">Regra 70/30: 70% conteudo seu, 30% apoio da IA.</p>
           </article>
-          <article class="media-card">
+          <article class="media-card tip-card" data-tip="3">
             <img
               src="assets/seguranca-digital.svg"
               alt="Ilustracao de seguranca digital"
               class="media-image"
             />
+            <h3>Seguranca digital</h3>
             <p>
               Proteja-se: nao compartilhe dados pessoais, senhas ou fotos privadas
               e sempre confirme informacoes importantes em fontes confiaveis.
             </p>
+            <button class="tip-button" type="button">Ver dica pratica</button>
+            <p class="tip-extra">Nunca envie CPF, endereco, telefone ou senha em ferramentas de IA.</p>
           </article>
+        </div>
+      </section>
+
+      <section id="quiz" class="section container panel reveal">
+        <h2>Mini quiz: voce esta pronto para usar IA?</h2>
+        <form class="quiz" id="ai-quiz">
+          <div class="quiz-item">
+            <p>1) Qual uso da IA ajuda mais no aprendizado real?</p>
+            <label><input type="radio" name="q1" value="a" /> Copiar respostas prontas.</label>
+            <label><input type="radio" name="q1" value="b" /> Pedir explicacoes e revisar com fontes.</label>
+          </div>
+          <div class="quiz-item">
+            <p>2) O que voce nao deve compartilhar com IA?</p>
+            <label><input type="radio" name="q2" value="a" /> Dados pessoais e senhas.</label>
+            <label><input type="radio" name="q2" value="b" /> Duvidas de matematica.</label>
+          </div>
+          <div class="quiz-item">
+            <p>3) Quando a IA responde, o melhor passo e:</p>
+            <label><input type="radio" name="q3" value="a" /> Aceitar tudo sem revisar.</label>
+            <label><input type="radio" name="q3" value="b" /> Conferir e aplicar pensamento critico.</label>
+          </div>
+          <button class="btn" type="submit">Ver resultado</button>
+          <p id="quiz-result" class="quiz-result" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section id="faq" class="section container reveal">
+        <h2>Perguntas frequentes</h2>
+        <div class="faq">
+          <details>
+            <summary>IA vai substituir totalmente os estudantes?</summary>
+            <p>Nao. IA apoia tarefas, mas criatividade, etica e pensamento critico continuam humanos.</p>
+          </details>
+          <details>
+            <summary>Posso confiar em toda resposta da IA?</summary>
+            <p>Nao. Sempre verifique em livros, professores e fontes confiaveis.</p>
+          </details>
+          <details>
+            <summary>Como estudar com IA sem prejudicar meu aprendizado?</summary>
+            <p>Use IA para entender melhor, praticar e revisar, mas produza suas respostas finais.</p>
+          </details>
         </div>
       </section>
     </main>

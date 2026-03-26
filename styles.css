@@ -53,6 +53,16 @@ body {
   margin-inline: auto;
 }
 
+.constellation-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
 .stars {
   position: fixed;
   inset: 0;
@@ -76,15 +86,7 @@ body {
 }
 
 .stars::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image:
-    linear-gradient(110deg, transparent 48%, rgba(255, 255, 255, 0.5) 50%, transparent 52%),
-    linear-gradient(122deg, transparent 47%, rgba(255, 255, 255, 0.34) 50%, transparent 53%);
-  background-size: 320px 320px, 420px 420px;
-  animation: comets 18s linear infinite;
-  opacity: 0.22;
+  content: none;
 }
 
 .scanline {
@@ -524,15 +526,6 @@ h2 {
   }
   50% {
     opacity: 1;
-  }
-}
-
-@keyframes comets {
-  0% {
-    transform: translate3d(-8%, -8%, 0);
-  }
-  100% {
-    transform: translate3d(8%, 8%, 0);
   }
 }
 

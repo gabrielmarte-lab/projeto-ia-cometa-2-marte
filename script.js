@@ -11,6 +11,7 @@ const quizModalScore = document.querySelector("#quiz-modal-score");
 const quizModalMessage = document.querySelector("#quiz-modal-message");
 const closeQuizModalButton = document.querySelector("#close-quiz-modal");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const constellationCanvas = document.querySelector("#constellation-canvas");
 
 if (toggleButton && menu) {
   toggleButton.addEventListener("click", () => {
@@ -150,4 +151,82 @@ if (heroTitle) {
 
     window.requestAnimationFrame(type);
   }
+}
+
+if (constellationCanvas) {
+  const context = constellationCanvas.getContext("2d");
+  const points = [];
+  const maxPoints = 34;
+  const maxDistance = 150;
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+  const resizeCanvas = () => {
+    constellationCanvas.width = Math.floor(window.innerWidth * dpr);
+    constellationCanvas.height = Math.floor(window.innerHeight * dpr);
+    constellationCanvas.style.width = `${window.innerWidth}px`;
+    constellationCanvas.style.height = `${window.innerHeight}px`;
+    if (context) context.setTransform(dpr, 0, 0, dpr, 0, 0);
+  };
+
+  const createPoints = () => {
+    points.length = 0;
+    for (let i = 0; i < maxPoints; i += 1) {
+      points.push({
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * window.innerHeight,
+        r: Math.random() * 1.8 + 0.6,
+        dx: (Math.random() - 0.5) * 0.12,
+        dy: (Math.random() - 0.5) * 0.12,
+      });
+    }
+  };
+
+  const draw = () => {
+    if (!context) return;
+    context.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+    for (let i = 0; i < points.length; i += 1) {
+      const a = points[i];
+
+      context.beginPath();
+      context.arc(a.x, a.y, a.r, 0, Math.PI * 2);
+      context.fillStyle = "rgba(255, 255, 255, 0.9)";
+      context.fill();
+
+      for (let j = i + 1; j < points.length; j += 1) {
+        const b = points[j];
+        const dist = Math.hypot(a.x - b.x, a.y - b.y);
+        if (dist < maxDistance) {
+          const alpha = 1 - dist / maxDistance;
+          context.beginPath();
+          context.moveTo(a.x, a.y);
+          context.lineTo(b.x, b.y);
+          context.strokeStyle = `rgba(255, 255, 255, ${alpha * 0.28})`;
+          context.lineWidth = 1;
+          context.stroke();
+        }
+      }
+    }
+  };
+
+  const update = () => {
+    if (!prefersReducedMotion) {
+      points.forEach((p) => {
+        p.x += p.dx;
+        p.y += p.dy;
+        if (p.x < 0 || p.x > window.innerWidth) p.dx *= -1;
+        if (p.y < 0 || p.y > window.innerHeight) p.dy *= -1;
+      });
+    }
+    draw();
+    window.requestAnimationFrame(update);
+  };
+
+  resizeCanvas();
+  createPoints();
+  update();
+  window.addEventListener("resize", () => {
+    resizeCanvas();
+    createPoints();
+  });
 }

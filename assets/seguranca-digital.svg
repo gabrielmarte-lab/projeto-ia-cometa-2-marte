@@ -1,0 +1,14 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="540" rx="24" fill="#081226"/>
+  <rect x="120" y="100" width="720" height="340" rx="18" fill="#0E1F3A" stroke="#4EF7FF" stroke-opacity="0.45" stroke-width="2"/>
+  <path d="M480 170L620 226V305C620 360 580 410 520 432L480 446L440 432C380 410 340 360 340 305V226L480 170Z" fill="#4EF7FF" fill-opacity="0.18" stroke="#6BE8FF" stroke-width="3"/>
+  <rect x="450" y="258" width="60" height="64" rx="10" fill="#6BE8FF" fill-opacity="0.35" stroke="#6BE8FF" stroke-width="2"/>
+  <path d="M462 258V240C462 230 470 222 480 222C490 222 498 230 498 240V258" stroke="#6BE8FF" stroke-width="3" stroke-linecap="round"/>
+  <rect x="160" y="155" width="130" height="16" rx="8" fill="#2D5C8E"/>
+  <rect x="160" y="183" width="100" height="16" rx="8" fill="#2D5C8E"/>
+  <rect x="690" y="350" width="120" height="16" rx="8" fill="#2D5C8E"/>
+  <rect x="690" y="378" width="90" height="16" rx="8" fill="#2D5C8E"/>
+  <circle cx="800" cy="130" r="3" fill="#6BE8FF"/>
+  <circle cx="190" cy="400" r="2.5" fill="#B393FF"/>
+  <text x="140" y="72" fill="#6BE8FF" font-size="34" font-family="Arial, sans-serif">USO SEGURO DA IA</text>
+</svg>

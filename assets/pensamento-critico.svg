@@ -1,0 +1,15 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="540" rx="24" fill="#081226"/>
+  <rect x="120" y="100" width="720" height="340" rx="18" fill="#0D1D37" stroke="#9F7BFF" stroke-opacity="0.55" stroke-width="2"/>
+  <path d="M190 378L290 198L390 378H190Z" fill="#9F7BFF" fill-opacity="0.22" stroke="#B393FF" stroke-width="2"/>
+  <line x1="290" y1="250" x2="290" y2="315" stroke="#B393FF" stroke-width="8" stroke-linecap="round"/>
+  <circle cx="290" cy="338" r="7" fill="#B393FF"/>
+  <rect x="460" y="150" width="330" height="40" rx="10" fill="#2B316D"/>
+  <rect x="460" y="210" width="290" height="18" rx="8" fill="#4863A8"/>
+  <rect x="460" y="240" width="260" height="18" rx="8" fill="#4863A8"/>
+  <rect x="460" y="270" width="220" height="18" rx="8" fill="#4863A8"/>
+  <circle cx="820" cy="140" r="3" fill="#B393FF"/>
+  <circle cx="780" cy="420" r="2.5" fill="#6BE8FF"/>
+  <circle cx="190" cy="130" r="2.5" fill="#6BE8FF"/>
+  <text x="140" y="72" fill="#B393FF" font-size="34" font-family="Arial, sans-serif">PENSAMENTO CRITICO</text>
+</svg>

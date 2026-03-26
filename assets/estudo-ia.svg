@@ -1,0 +1,16 @@
+<svg width="960" height="540" viewBox="0 0 960 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="540" rx="24" fill="#081226"/>
+  <circle cx="180" cy="120" r="3" fill="#6BE8FF"/>
+  <circle cx="790" cy="80" r="2.5" fill="#B393FF"/>
+  <circle cx="860" cy="210" r="2.5" fill="#6BE8FF"/>
+  <rect x="120" y="100" width="720" height="340" rx="18" fill="#0E1D3D" stroke="#43EFFF" stroke-opacity="0.45" stroke-width="2"/>
+  <rect x="165" y="150" width="260" height="220" rx="14" fill="#10284D" stroke="#9F7BFF" stroke-opacity="0.5"/>
+  <rect x="455" y="150" width="340" height="44" rx="10" fill="#123463"/>
+  <rect x="455" y="214" width="300" height="20" rx="8" fill="#2A5E8F"/>
+  <rect x="455" y="246" width="260" height="20" rx="8" fill="#2A5E8F"/>
+  <rect x="455" y="278" width="220" height="20" rx="8" fill="#2A5E8F"/>
+  <path d="M227 219C227 187.52 252.52 162 284 162C315.48 162 341 187.52 341 219V300H227V219Z" fill="#6BE8FF" fill-opacity="0.2" stroke="#6BE8FF" stroke-width="2"/>
+  <circle cx="284" cy="214" r="34" fill="#6BE8FF" fill-opacity="0.35"/>
+  <path d="M238 338H330" stroke="#6BE8FF" stroke-width="4" stroke-linecap="round"/>
+  <text x="140" y="72" fill="#6BE8FF" font-size="36" font-family="Arial, sans-serif">IA PARA ESTUDAR</text>
+</svg>

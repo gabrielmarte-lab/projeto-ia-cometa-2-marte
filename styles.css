@@ -142,6 +142,12 @@ body {
     0 0 16px rgba(255, 255, 255, 0.12);
 }
 
+.nav-actions {
+  display: flex;
+  gap: 0.55rem;
+  align-items: center;
+}
+
 .brand {
   color: var(--accent);
   text-decoration: none;
@@ -170,6 +176,30 @@ body {
   transition: color 0.25s ease, text-shadow 0.25s ease;
 }
 
+.menu a,
+.btn,
+.tip-button,
+.faq summary,
+.sound-toggle,
+.menu-toggle {
+  position: relative;
+}
+
+.menu a:hover::after,
+.btn:hover::after,
+.tip-button:hover::after,
+.faq summary:hover::after,
+.sound-toggle:hover::after {
+  content: attr(data-glitch);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: rgba(255, 255, 255, 0.45);
+  clip-path: polygon(0 35%, 100% 35%, 100% 65%, 0 65%);
+  animation: glitch 220ms steps(2, end) 1;
+  pointer-events: none;
+}
+
 .menu a:hover {
   color: #ffffff;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.48);
@@ -184,6 +214,11 @@ body {
   padding: 0.5rem 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
+}
+
+.sound-toggle {
+  display: inline-block;
+  font-size: 0.74rem;
 }
 
 .hero-content {
@@ -558,6 +593,61 @@ h2 {
   background: linear-gradient(180deg, #060a14a6, #05070fcc);
 }
 
+.cursor-dot,
+.cursor-ring {
+  position: fixed;
+  left: 0;
+  top: 0;
+  pointer-events: none;
+  z-index: 40;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.2s ease;
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.cursor-ring {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+}
+
+body.cursor-active .cursor-dot,
+body.cursor-active .cursor-ring {
+  opacity: 1;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+}
+
+@keyframes glitch {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(-2px, 1px);
+  }
+  50% {
+    transform: translate(2px, -1px);
+  }
+  75% {
+    transform: translate(-1px, -1px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 .section::after {
   content: "";
   display: block;
@@ -621,6 +711,11 @@ h2 {
   .result-modal,
   .result-modal-card {
     transition: none;
+  }
+
+  .cursor-dot,
+  .cursor-ring {
+    display: none;
   }
 }
 

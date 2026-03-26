@@ -1,4 +1,4 @@
-const toggleButton = document.querySelector(".menu-toggle");
+const toggleButton = document.querySelector(".menu-toggle[aria-controls='menu']");
 const menu = document.querySelector(".menu");
 const progressBar = document.querySelector(".reading-progress");
 const revealElements = document.querySelectorAll(".reveal");
@@ -12,6 +12,9 @@ const quizModalMessage = document.querySelector("#quiz-modal-message");
 const closeQuizModalButton = document.querySelector("#close-quiz-modal");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const constellationCanvas = document.querySelector("#constellation-canvas");
+const soundToggle = document.querySelector("#sound-toggle");
+const cursorDot = document.querySelector("#cursor-dot");
+const cursorRing = document.querySelector("#cursor-ring");
 
 if (toggleButton && menu) {
   toggleButton.addEventListener("click", () => {
@@ -26,6 +29,13 @@ if (toggleButton && menu) {
     });
   });
 }
+
+// Add glitch-text source to interactive elements.
+document
+  .querySelectorAll(".menu a, .btn, .tip-button, .faq summary, .sound-toggle")
+  .forEach((element) => {
+    element.setAttribute("data-glitch", element.textContent?.trim() || "");
+  });
 
 if (progressBar) {
   const updateProgress = () => {
@@ -151,6 +161,69 @@ if (heroTitle) {
 
     window.requestAnimationFrame(type);
   }
+}
+
+if (cursorDot && cursorRing && !prefersReducedMotion) {
+  let ringX = 0;
+  let ringY = 0;
+  let dotX = 0;
+  let dotY = 0;
+
+  window.addEventListener("mousemove", (event) => {
+    document.body.classList.add("cursor-active");
+    dotX = event.clientX;
+    dotY = event.clientY;
+    cursorDot.style.transform = `translate(${dotX - 3}px, ${dotY - 3}px)`;
+  });
+
+  const animateRing = () => {
+    ringX += (dotX - ringX) * 0.2;
+    ringY += (dotY - ringY) * 0.2;
+    cursorRing.style.transform = `translate(${ringX - 13}px, ${ringY - 13}px)`;
+    window.requestAnimationFrame(animateRing);
+  };
+  animateRing();
+
+  window.addEventListener("mouseleave", () => {
+    document.body.classList.remove("cursor-active");
+  });
+}
+
+if (soundToggle) {
+  let soundEnabled = false;
+  let audioCtx = null;
+
+  const ensureContext = () => {
+    if (!audioCtx) audioCtx = new window.AudioContext();
+    if (audioCtx.state === "suspended") audioCtx.resume();
+    return audioCtx;
+  };
+
+  const playBeep = (frequency = 480, duration = 0.06, gainValue = 0.02) => {
+    if (!soundEnabled) return;
+    const ctx = ensureContext();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "square";
+    osc.frequency.value = frequency;
+    gain.gain.value = gainValue;
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + duration);
+  };
+
+  soundToggle.addEventListener("click", () => {
+    soundEnabled = !soundEnabled;
+    soundToggle.setAttribute("aria-pressed", String(soundEnabled));
+    soundToggle.textContent = soundEnabled ? "Som: ON" : "Som: OFF";
+    soundToggle.setAttribute("data-glitch", soundToggle.textContent);
+    playBeep(soundEnabled ? 660 : 330, 0.07, 0.03);
+  });
+
+  document.querySelectorAll("a, button, summary").forEach((element) => {
+    element.addEventListener("click", () => playBeep(520, 0.04, 0.018));
+  });
 }
 
 if (constellationCanvas) {

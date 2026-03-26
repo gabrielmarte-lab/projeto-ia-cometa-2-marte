@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=2003a" />
+    <link rel="stylesheet" href="styles.css?v=2004a" />
   </head>
   <body>
     <div class="reading-progress" aria-hidden="true"></div>
@@ -25,9 +25,14 @@
     <header class="hero" id="top">
       <nav class="nav">
         <a href="#top" class="brand">COMETAI</a>
-        <button class="menu-toggle" aria-expanded="false" aria-controls="menu">
-          Menu
-        </button>
+        <div class="nav-actions">
+          <button id="sound-toggle" class="menu-toggle sound-toggle" type="button" aria-pressed="false">
+            Som: OFF
+          </button>
+          <button class="menu-toggle" aria-expanded="false" aria-controls="menu">
+            Menu
+          </button>
+        </div>
         <ul id="menu" class="menu">
           <li><a href="#about">O que é IA?</a></li>
           <li><a href="#mission">Como Funciona</a></li>
@@ -243,6 +248,9 @@
         <button id="close-quiz-modal" class="btn" type="button">Fechar</button>
       </div>
     </div>
+
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
 
     <script src="script.js"></script>
   </body>

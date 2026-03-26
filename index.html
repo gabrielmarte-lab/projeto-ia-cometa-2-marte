@@ -146,7 +146,7 @@
               Use IA para resumir conteudos, criar perguntas de revisao, montar
               planos de estudo e receber explicacoes em linguagem simples.
             </p>
-            <button class="tip-button" type="button">Ver dica pratica</button>
+            <button class="tip-button" type="button" aria-expanded="false">Ver dica pratica</button>
             <p class="tip-extra">Experimente: "Explique este tema como se eu tivesse 15 anos".</p>
           </article>
           <article class="media-card tip-card" data-tip="2">
@@ -160,7 +160,7 @@
               Nao dependa totalmente da IA. Evite copiar respostas prontas: use o
               apoio da ferramenta e depois escreva com suas proprias palavras.
             </p>
-            <button class="tip-button" type="button">Ver dica pratica</button>
+            <button class="tip-button" type="button" aria-expanded="false">Ver dica pratica</button>
             <p class="tip-extra">Regra 70/30: 70% conteudo seu, 30% apoio da IA.</p>
           </article>
           <article class="media-card tip-card" data-tip="3">
@@ -174,7 +174,7 @@
               Proteja-se: nao compartilhe dados pessoais, senhas ou fotos privadas
               e sempre confirme informacoes importantes em fontes confiaveis.
             </p>
-            <button class="tip-button" type="button">Ver dica pratica</button>
+            <button class="tip-button" type="button" aria-expanded="false">Ver dica pratica</button>
             <p class="tip-extra">Nunca envie CPF, endereco, telefone ou senha em ferramentas de IA.</p>
           </article>
         </div>
@@ -233,6 +233,15 @@
         <a href="#top" class="btn ghost">Voltar ao topo</a>
       </div>
     </footer>
+
+    <div class="result-modal" id="quiz-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="quiz-modal-title">
+      <div class="result-modal-card">
+        <h3 id="quiz-modal-title">Resultado do Quiz</h3>
+        <p id="quiz-modal-score" class="modal-score"></p>
+        <p id="quiz-modal-message" class="modal-message"></p>
+        <button id="close-quiz-modal" class="btn" type="button">Fechar</button>
+      </div>
+    </div>
 
     <script src="script.js"></script>
   </body>

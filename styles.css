@@ -326,22 +326,41 @@ h2 {
 .tip-button {
   margin-top: 0.4rem;
   border: 1px solid var(--line);
-  background: transparent;
-  color: #bcecff;
+  background: linear-gradient(110deg, #122a4c, #1b355e);
+  color: #d8f6ff;
   border-radius: 9px;
-  padding: 0.45rem 0.7rem;
+  padding: 0.48rem 0.78rem;
   cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.tip-button:hover {
+  transform: translateY(-1px);
+  border-color: #7be8ff8d;
+  box-shadow: 0 0 14px #58f3ff40;
 }
 
 .tip-extra {
+  max-height: 0;
+  overflow: hidden;
   margin-top: 0.6rem;
+  margin-bottom: 0;
   font-size: 0.93rem;
-  color: #87d7ff;
-  display: none;
+  color: #bfeeff;
+  border-left: 2px solid #6de8ff;
+  padding-left: 0.65rem;
+  background: linear-gradient(90deg, #56ecff1c, transparent);
+  border-radius: 2px;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.25s ease, margin 0.25s ease;
 }
 
 .tip-card.open .tip-extra {
-  display: block;
+  max-height: 120px;
+  opacity: 1;
+  margin-top: 0.75rem;
+  margin-bottom: 0.2rem;
 }
 
 .quiz {
@@ -370,6 +389,40 @@ h2 {
   margin-top: 0.2rem;
   font-weight: 700;
   color: #8af8ff;
+}
+
+.result-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: none;
+  place-items: center;
+  padding: 1rem;
+  background: rgba(2, 7, 20, 0.75);
+  backdrop-filter: blur(5px);
+}
+
+.result-modal.show {
+  display: grid;
+}
+
+.result-modal-card {
+  width: min(100%, 520px);
+  border: 1px solid #6be8ff59;
+  border-radius: 14px;
+  background: linear-gradient(160deg, #091b37, #101b3a 60%, #1d1a42);
+  padding: 1.2rem;
+  box-shadow: 0 0 30px #52ebff3b;
+}
+
+.modal-score {
+  margin-bottom: 0.35rem;
+  color: #82f3ff;
+  font-family: "Orbitron", sans-serif;
+}
+
+.modal-message {
+  color: #d6ecff;
 }
 
 .faq {

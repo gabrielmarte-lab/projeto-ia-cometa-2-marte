@@ -6,6 +6,10 @@ const tipButtons = document.querySelectorAll(".tip-button");
 const quizForm = document.querySelector("#ai-quiz");
 const quizResult = document.querySelector("#quiz-result");
 const heroTitle = document.querySelector("#hero-title");
+const quizModal = document.querySelector("#quiz-modal");
+const quizModalScore = document.querySelector("#quiz-modal-score");
+const quizModalMessage = document.querySelector("#quiz-modal-message");
+const closeQuizModalButton = document.querySelector("#close-quiz-modal");
 
 if (toggleButton && menu) {
   toggleButton.addEventListener("click", () => {
@@ -54,6 +58,7 @@ tipButtons.forEach((button) => {
     const card = button.closest(".tip-card");
     if (!card) return;
     const isOpen = card.classList.toggle("open");
+    button.setAttribute("aria-expanded", String(isOpen));
     button.textContent = isOpen ? "Ocultar dica" : "Ver dica pratica";
   });
 });
@@ -73,15 +78,52 @@ if (quizForm && quizResult) {
       if (formData.get(key) === value) score += 1;
     });
 
+    let message = "";
     if (score === 3) {
-      quizResult.textContent = "Excelente! Voce esta preparado para usar IA com responsabilidade.";
+      message = "Excelente! Voce esta preparado para usar IA com responsabilidade.";
     } else if (score === 2) {
-      quizResult.textContent = "Muito bem! Continue praticando uso critico e seguro da IA.";
+      message = "Muito bem! Continue praticando uso critico e seguro da IA.";
     } else {
-      quizResult.textContent = "Vale revisar os blocos do site e tentar novamente. Voce consegue!";
+      message = "Vale revisar os blocos do site e tentar novamente. Voce consegue!";
+    }
+
+    quizResult.textContent = message;
+
+    if (quizModal && quizModalScore && quizModalMessage) {
+      quizModalScore.textContent = `Pontuacao: ${score}/3`;
+      quizModalMessage.textContent = message;
+      quizModal.classList.add("show");
+      quizModal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
     }
   });
 }
+
+if (closeQuizModalButton && quizModal) {
+  closeQuizModalButton.addEventListener("click", () => {
+    quizModal.classList.remove("show");
+    quizModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  });
+}
+
+if (quizModal) {
+  quizModal.addEventListener("click", (event) => {
+    if (event.target === quizModal) {
+      quizModal.classList.remove("show");
+      quizModal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+  });
+}
+
+window.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && quizModal && quizModal.classList.contains("show")) {
+    quizModal.classList.remove("show");
+    quizModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+  }
+});
 
 if (heroTitle) {
   const fullText = heroTitle.textContent || "";

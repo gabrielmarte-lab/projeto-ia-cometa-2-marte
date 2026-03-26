@@ -10,6 +10,7 @@ const quizModal = document.querySelector("#quiz-modal");
 const quizModalScore = document.querySelector("#quiz-modal-score");
 const quizModalMessage = document.querySelector("#quiz-modal-message");
 const closeQuizModalButton = document.querySelector("#close-quiz-modal");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (toggleButton && menu) {
   toggleButton.addEventListener("click", () => {
@@ -59,7 +60,7 @@ tipButtons.forEach((button) => {
     if (!card) return;
     const isOpen = card.classList.toggle("open");
     button.setAttribute("aria-expanded", String(isOpen));
-    button.textContent = isOpen ? "Ocultar dica" : "Ver dica pratica";
+    button.textContent = isOpen ? "Ocultar dica" : "Ver dica prática";
   });
 });
 
@@ -80,17 +81,17 @@ if (quizForm && quizResult) {
 
     let message = "";
     if (score === 3) {
-      message = "Excelente! Voce esta preparado para usar IA com responsabilidade.";
+      message = "Excelente! Você está preparado para usar IA com responsabilidade.";
     } else if (score === 2) {
-      message = "Muito bem! Continue praticando uso critico e seguro da IA.";
+      message = "Muito bem! Continue praticando uso crítico e seguro da IA.";
     } else {
-      message = "Vale revisar os blocos do site e tentar novamente. Voce consegue!";
+      message = "Vale revisar os blocos do site e tentar novamente. Você consegue!";
     }
 
     quizResult.textContent = message;
 
     if (quizModal && quizModalScore && quizModalMessage) {
-      quizModalScore.textContent = `Pontuacao: ${score}/3`;
+      quizModalScore.textContent = `Pontuação: ${score}/3`;
       quizModalMessage.textContent = message;
       quizModal.classList.add("show");
       quizModal.setAttribute("aria-hidden", "false");
@@ -127,14 +128,26 @@ window.addEventListener("keydown", (event) => {
 
 if (heroTitle) {
   const fullText = heroTitle.textContent || "";
-  let i = 0;
-  heroTitle.textContent = "";
-  const type = () => {
-    heroTitle.textContent = fullText.slice(0, i);
-    i += 1;
-    if (i <= fullText.length) {
-      setTimeout(type, 22);
-    }
-  };
-  type();
+  if (prefersReducedMotion) {
+    heroTitle.textContent = fullText;
+  } else {
+    let i = 0;
+    let last = 0;
+    const interval = 18;
+    heroTitle.textContent = "";
+
+    const type = (time) => {
+      if (time - last >= interval) {
+        heroTitle.textContent = fullText.slice(0, i);
+        i += 1;
+        last = time;
+      }
+
+      if (i <= fullText.length) {
+        window.requestAnimationFrame(type);
+      }
+    };
+
+    window.requestAnimationFrame(type);
+  }
 }

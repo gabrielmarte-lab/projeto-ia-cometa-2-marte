@@ -186,12 +186,25 @@ if (cursorDot && cursorRing && !prefersReducedMotion) {
 
   window.addEventListener("mouseleave", () => {
     document.body.classList.remove("cursor-active");
+    document.body.classList.remove("cursor-on-clickable");
   });
 }
+
+document
+  .querySelectorAll("a, button, summary, [role='button'], input, label")
+  .forEach((element) => {
+    element.addEventListener("mouseenter", () => {
+      document.body.classList.add("cursor-on-clickable");
+    });
+    element.addEventListener("mouseleave", () => {
+      document.body.classList.remove("cursor-on-clickable");
+    });
+  });
 
 if (soundToggle) {
   let soundEnabled = false;
   let audioCtx = null;
+  let ambientNodes = null;
 
   const ensureContext = () => {
     if (!audioCtx) audioCtx = new window.AudioContext();
@@ -199,7 +212,58 @@ if (soundToggle) {
     return audioCtx;
   };
 
-  const playSoftClick = (frequency = 460, duration = 0.035, gainValue = 0.012) => {
+  const startAmbient = () => {
+    const ctx = ensureContext();
+    if (ambientNodes) return;
+
+    const ambientGain = ctx.createGain();
+    ambientGain.gain.value = 0.018;
+    ambientGain.connect(ctx.destination);
+
+    // Low synth pad for a calm Y2K ambient texture.
+    const padOsc = ctx.createOscillator();
+    const padGain = ctx.createGain();
+    padOsc.type = "triangle";
+    padOsc.frequency.value = 92;
+    padGain.gain.value = 0.009;
+    padOsc.connect(padGain);
+    padGain.connect(ambientGain);
+    padOsc.start();
+
+    // Soft filtered noise to add airy background.
+    const bufferSize = 2 * ctx.sampleRate;
+    const noiseBuffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+    const data = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i += 1) {
+      data[i] = (Math.random() * 2 - 1) * 0.28;
+    }
+    const noiseSource = ctx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+    noiseSource.loop = true;
+    const noiseFilter = ctx.createBiquadFilter();
+    noiseFilter.type = "lowpass";
+    noiseFilter.frequency.value = 680;
+    const noiseGain = ctx.createGain();
+    noiseGain.gain.value = 0.014;
+    noiseSource.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(ambientGain);
+    noiseSource.start();
+
+    ambientNodes = { ambientGain, padOsc, noiseSource };
+  };
+
+  const stopAmbient = () => {
+    if (!ambientNodes) return;
+    const { ambientGain, padOsc, noiseSource } = ambientNodes;
+    const ctx = ensureContext();
+    ambientGain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.22);
+    padOsc.stop(ctx.currentTime + 0.24);
+    noiseSource.stop(ctx.currentTime + 0.24);
+    ambientNodes = null;
+  };
+
+  const playSoftClick = (frequency = 460, duration = 0.035, gainValue = 0.018) => {
     if (!soundEnabled) return;
     const ctx = ensureContext();
     const osc = ctx.createOscillator();
@@ -219,11 +283,16 @@ if (soundToggle) {
     soundToggle.setAttribute("aria-pressed", String(soundEnabled));
     soundToggle.textContent = soundEnabled ? "ON" : "OFF";
     soundToggle.setAttribute("data-glitch", soundToggle.textContent);
-    playSoftClick(soundEnabled ? 520 : 380, 0.045, 0.018);
+    if (soundEnabled) {
+      startAmbient();
+      playSoftClick(520, 0.05, 0.024);
+    } else {
+      stopAmbient();
+    }
   });
 
   document.querySelectorAll("a, button, summary").forEach((element) => {
-    element.addEventListener("click", () => playSoftClick(420, 0.028, 0.01));
+    element.addEventListener("click", () => playSoftClick(420, 0.03, 0.018));
   });
 }
 

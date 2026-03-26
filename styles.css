@@ -142,12 +142,6 @@ body {
     0 0 16px rgba(255, 255, 255, 0.12);
 }
 
-.nav-actions {
-  display: flex;
-  gap: 0.55rem;
-  align-items: center;
-}
-
 .brand {
   color: var(--accent);
   text-decoration: none;
@@ -180,7 +174,7 @@ body {
 .btn,
 .tip-button,
 .faq summary,
-.sound-toggle,
+.audio-orb,
 .menu-toggle {
   position: relative;
 }
@@ -189,7 +183,7 @@ body {
 .btn:hover::after,
 .tip-button:hover::after,
 .faq summary:hover::after,
-.sound-toggle:hover::after {
+.audio-orb:hover::after {
   content: attr(data-glitch);
   position: absolute;
   left: 0;
@@ -214,11 +208,6 @@ body {
   padding: 0.5rem 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.04em;
-}
-
-.sound-toggle {
-  display: inline-block;
-  font-size: 0.74rem;
 }
 
 .hero-content {
@@ -624,6 +613,44 @@ body.cursor-active .cursor-ring {
   opacity: 1;
 }
 
+.audio-orb {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  width: 58px;
+  height: 58px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.1) 42%, rgba(0, 0, 0, 0.6) 80%),
+    linear-gradient(180deg, #2e2e2e, #111111);
+  color: #f2f2f2;
+  font-family: "Orbitron", sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  z-index: 35;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 0 14px rgba(255, 255, 255, 0.22),
+    inset 0 1px 6px rgba(255, 255, 255, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.audio-orb:hover {
+  transform: translateY(-2px) scale(1.04);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.2),
+    0 0 22px rgba(255, 255, 255, 0.5),
+    inset 0 1px 8px rgba(255, 255, 255, 0.35);
+}
+
+.audio-orb[aria-pressed="true"] {
+  color: #111;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.9), rgba(220, 220, 220, 0.62) 45%, rgba(100, 100, 100, 0.6) 82%),
+    linear-gradient(180deg, #ffffff, #9e9e9e);
+}
+
 @media (hover: hover) and (pointer: fine) {
   body {
     cursor: none;
@@ -722,6 +749,13 @@ body.cursor-active .cursor-ring {
 @media (max-width: 760px) {
   .menu-toggle {
     display: inline-block;
+  }
+
+  .audio-orb {
+    width: 54px;
+    height: 54px;
+    right: 0.8rem;
+    bottom: 0.8rem;
   }
 
   .menu {

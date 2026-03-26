@@ -25,14 +25,9 @@
     <header class="hero" id="top">
       <nav class="nav">
         <a href="#top" class="brand">COMETAI</a>
-        <div class="nav-actions">
-          <button id="sound-toggle" class="menu-toggle sound-toggle" type="button" aria-pressed="false">
-            Som: OFF
-          </button>
-          <button class="menu-toggle" aria-expanded="false" aria-controls="menu">
-            Menu
-          </button>
-        </div>
+        <button class="menu-toggle" aria-expanded="false" aria-controls="menu">
+          Menu
+        </button>
         <ul id="menu" class="menu">
           <li><a href="#about">O que é IA?</a></li>
           <li><a href="#mission">Como Funciona</a></li>
@@ -251,6 +246,9 @@
 
     <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
     <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+    <button id="sound-toggle" class="audio-orb" type="button" aria-pressed="false" aria-label="Ativar ou desativar som">
+      OFF
+    </button>
 
     <script src="script.js"></script>
   </body>

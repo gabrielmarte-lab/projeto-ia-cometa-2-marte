@@ -32,7 +32,7 @@ if (toggleButton && menu) {
 
 // Add glitch-text source to interactive elements.
 document
-  .querySelectorAll(".menu a, .btn, .tip-button, .faq summary, .sound-toggle")
+  .querySelectorAll(".menu a, .btn, .tip-button, .faq summary, .audio-orb")
   .forEach((element) => {
     element.setAttribute("data-glitch", element.textContent?.trim() || "");
   });
@@ -199,14 +199,15 @@ if (soundToggle) {
     return audioCtx;
   };
 
-  const playBeep = (frequency = 480, duration = 0.06, gainValue = 0.02) => {
+  const playSoftClick = (frequency = 460, duration = 0.035, gainValue = 0.012) => {
     if (!soundEnabled) return;
     const ctx = ensureContext();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
-    osc.type = "square";
+    osc.type = "sine";
     osc.frequency.value = frequency;
-    gain.gain.value = gainValue;
+    gain.gain.setValueAtTime(gainValue, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
     osc.connect(gain);
     gain.connect(ctx.destination);
     osc.start();
@@ -216,13 +217,13 @@ if (soundToggle) {
   soundToggle.addEventListener("click", () => {
     soundEnabled = !soundEnabled;
     soundToggle.setAttribute("aria-pressed", String(soundEnabled));
-    soundToggle.textContent = soundEnabled ? "Som: ON" : "Som: OFF";
+    soundToggle.textContent = soundEnabled ? "ON" : "OFF";
     soundToggle.setAttribute("data-glitch", soundToggle.textContent);
-    playBeep(soundEnabled ? 660 : 330, 0.07, 0.03);
+    playSoftClick(soundEnabled ? 520 : 380, 0.045, 0.018);
   });
 
   document.querySelectorAll("a, button, summary").forEach((element) => {
-    element.addEventListener("click", () => playBeep(520, 0.04, 0.018));
+    element.addEventListener("click", () => playSoftClick(420, 0.028, 0.01));
   });
 }
 

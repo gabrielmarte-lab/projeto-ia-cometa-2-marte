@@ -613,6 +613,16 @@ body.cursor-active .cursor-ring {
   opacity: 1;
 }
 
+body.cursor-on-clickable .cursor-dot {
+  background: rgba(255, 68, 68, 0.95);
+  box-shadow: 0 0 8px rgba(255, 68, 68, 0.8);
+}
+
+body.cursor-on-clickable .cursor-ring {
+  border-color: rgba(255, 68, 68, 0.9);
+  box-shadow: 0 0 14px rgba(255, 68, 68, 0.55);
+}
+
 .audio-orb {
   position: fixed;
   right: 1rem;

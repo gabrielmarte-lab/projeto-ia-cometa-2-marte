@@ -19,10 +19,13 @@ html,
 body {
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+  overscroll-behavior-x: none;
 }
 
 body {
@@ -37,7 +40,11 @@ body {
   background-size: auto, auto, 24px 24px, 24px 24px, auto;
   line-height: 1.6;
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow-x: clip;
+  position: relative;
+  overscroll-behavior-x: none;
+  touch-action: pan-y pinch-zoom;
+  -webkit-text-size-adjust: 100%;
 }
 
 .reading-progress {
@@ -664,6 +671,17 @@ body.cursor-on-clickable .cursor-ring {
 @media (hover: hover) and (pointer: fine) {
   body {
     cursor: none;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .cursor-dot,
+  .cursor-ring {
+    display: none !important;
+  }
+
+  body {
+    cursor: auto !important;
   }
 }
 

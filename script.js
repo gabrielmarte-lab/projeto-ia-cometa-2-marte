@@ -11,6 +11,7 @@ const quizModalScore = document.querySelector("#quiz-modal-score");
 const quizModalMessage = document.querySelector("#quiz-modal-message");
 const closeQuizModalButton = document.querySelector("#close-quiz-modal");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const supportsDesktopPointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 const constellationCanvas = document.querySelector("#constellation-canvas");
 const soundToggle = document.querySelector("#sound-toggle");
 const cursorDot = document.querySelector("#cursor-dot");
@@ -163,7 +164,7 @@ if (heroTitle) {
   }
 }
 
-if (cursorDot && cursorRing && !prefersReducedMotion) {
+if (cursorDot && cursorRing && !prefersReducedMotion && supportsDesktopPointer) {
   let ringX = 0;
   let ringY = 0;
   let dotX = 0;
@@ -194,9 +195,11 @@ document
   .querySelectorAll("a, button, summary, [role='button'], input, label")
   .forEach((element) => {
     element.addEventListener("mouseenter", () => {
+      if (!supportsDesktopPointer) return;
       document.body.classList.add("cursor-on-clickable");
     });
     element.addEventListener("mouseleave", () => {
+      if (!supportsDesktopPointer) return;
       document.body.classList.remove("cursor-on-clickable");
     });
   });

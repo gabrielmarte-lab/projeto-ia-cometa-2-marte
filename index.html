@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=2005a" />
+    <link rel="stylesheet" href="styles.css?v=2007a" />
   </head>
   <body>
     <div class="reading-progress" aria-hidden="true"></div>
@@ -33,6 +33,7 @@
           <li><a href="#mission">Como Funciona</a></li>
           <li><a href="#journey">Linha do Tempo</a></li>
           <li><a href="#gallery">Estudo e Segurança</a></li>
+          <li><a href="#matematica">Matemática</a></li>
           <li><a href="#quiz">Quiz</a></li>
           <li><a href="#faq">FAQ</a></li>
           <li><a href="#contact">Créditos</a></li>
@@ -48,6 +49,7 @@
         </p>
         <div class="hero-actions">
           <a href="#about" class="btn">Iniciar Jornada</a>
+          <a href="#matematica" class="btn ghost">Matemática + IA</a>
           <a href="#quiz" class="btn ghost">Testar conhecimento</a>
         </div>
       </section>
@@ -181,6 +183,116 @@
         </div>
       </section>
 
+      <section id="matematica" class="section container panel reveal">
+        <h2>Matemática e prompts na IA</h2>
+        <p class="muted">
+          Nesta área você encontra conteúdos de matemática do ensino médio e orientações para usar
+          <strong>prompts</strong> (instruções escritas) de forma clara em ferramentas como ChatGPT.
+          Um bom prompt diz <em>o que</em> você quer, <em>para quem</em> é a explicação e pede
+          <em>exemplos e verificação</em>. Sempre revise o que a IA responder e confira com professor ou livro.
+        </p>
+
+        <nav class="math-subnav" aria-label="Tópicos de matemática">
+          <a href="#mat-afim" class="math-subnav-link">Função afim</a>
+          <a href="#mat-quadratica" class="math-subnav-link">Função quadrática</a>
+          <a href="#mat-equacoes" class="math-subnav-link">Equações</a>
+          <a href="#mat-porcentagem" class="math-subnav-link">Porcentagem e regra de três</a>
+        </nav>
+
+        <article class="math-topic" id="mat-afim">
+          <h3>Função afim e gráfico na reta</h3>
+          <p>
+            Uma <strong>função afim</strong> tem forma <em>f(x) = ax + b</em>, com <em>a</em> e <em>b</em> reais.
+            O coeficiente <em>a</em> indica a inclinação da reta; <em>b</em> é onde a reta corta o eixo <em>y</em>
+            (ordenada na origem). O gráfico é sempre uma reta no plano cartesiano.
+          </p>
+          <p class="muted">
+            <strong>Dica de prompt:</strong> diga que você é aluno, peça linguagem adequada, peça definições,
+            um exemplo com números, ideia do gráfico e um exercício com resolução comentada — assim a IA organiza melhor a resposta.
+          </p>
+          <pre class="prompt-block" id="prompt-afim-text" aria-hidden="true">Sou aluno(a) do ensino médio. Explique função afim f(x) = ax + b: o que são a e b no gráfico, como identificar se a reta sobe ou desce, como marcar o ponto em que x = 0 e como traçar a reta no plano cartesiano. Use um exemplo numérico com a = 2 e b = -3. Depois, proponha um exercício simples e mostre a resolução passo a passo. Se algo puder ser confundido com outro tipo de função, esclareça em uma frase.</pre>
+          <button type="button" class="btn copy-prompt-btn" data-target="prompt-afim-text">Copiar prompt ideal</button>
+
+          <div class="exercise-block">
+            <h4>Questão prática</h4>
+            <p>Seja <em>f(x) = -x + 4</em>. Calcule <em>f(0)</em>, <em>f(2)</em> e diga se a reta é crescente ou decrescente.</p>
+            <details class="solution-details">
+              <summary>Ver resolução</summary>
+              <p><strong>Resolução:</strong> <em>f(0) = -0 + 4 = 4</em>. <em>f(2) = -2 + 4 = 2</em>. Como <em>a = -1 &lt; 0</em>, a função é <strong>decrescente</strong> (a reta “desce” à medida que <em>x</em> aumenta).</p>
+            </details>
+          </div>
+        </article>
+
+        <article class="math-topic" id="mat-quadratica">
+          <h3>Função quadrática e gráfico (parábola)</h3>
+          <p>
+            Uma <strong>função quadrática</strong> tem forma <em>f(x) = ax² + bx + c</em>, com <em>a ≠ 0</em>.
+            O gráfico é uma <strong>parábola</strong>. Se <em>a &gt; 0</em>, a concavidade volta para cima; se <em>a &lt; 0</em>, para baixo.
+            O <strong>vértice</strong> é o ponto de máximo ou mínimo; os <strong>zeros</strong> da função (se existirem) são onde a parábola cruza o eixo <em>x</em>.
+          </p>
+          <p class="muted">
+            <strong>Dica de prompt:</strong> peça esquema (concavidade, vértice em palavras simples) e peça para relacionar com o gráfico; evite pedir só “resolva” sem contexto.
+          </p>
+          <pre class="prompt-block" id="prompt-quad-text" aria-hidden="true">Sou aluno(a) do ensino médio. Explique função quadrática f(x) = ax² + bx + c: significado de a, b e c no gráfico, concavidade da parábola, ideia do vértice e dos zeros (raízes). Use o exemplo f(x) = x² - 4x + 3: ajude a entender como a parábola se comporta e como achar os zeros quando possível. Inclua um exercício numérico com resolução comentada. Use linguagem clara e avise se algum passo for aproximação.</pre>
+          <button type="button" class="btn copy-prompt-btn" data-target="prompt-quad-text">Copiar prompt ideal</button>
+
+          <div class="exercise-block">
+            <h4>Questão prática</h4>
+            <p>Para <em>f(x) = x² - 5x + 6</em>, determine os zeros da função (valores de <em>x</em> para os quais <em>f(x) = 0</em>).</p>
+            <details class="solution-details">
+              <summary>Ver resolução</summary>
+              <p><strong>Resolução:</strong> Queremos <em>x² - 5x + 6 = 0</em>. Fatorando: <em>(x - 2)(x - 3) = 0</em>, logo <em>x = 2</em> ou <em>x = 3</em>. Os zeros são <strong>2</strong> e <strong>3</strong>.</p>
+            </details>
+          </div>
+        </article>
+
+        <article class="math-topic" id="mat-equacoes">
+          <h3>Equações (1º grau e ideia de sistema simples)</h3>
+          <p>
+            Uma <strong>equação do 1º grau</strong> na incógnita <em>x</em> pode ser reduzida a <em>ax + b = 0</em> (com <em>a ≠ 0</em>).
+            Resolvemos isolando <em>x</em>: operações iguais dos dois lados mantêm a igualdade.
+            Em um <strong>sistema</strong> com duas equações e duas incógnitas, buscamos valores que satisfaçam as duas ao mesmo tempo (por substituição ou adição, conforme o professor orientar).
+          </p>
+          <p class="muted">
+            <strong>Dica de prompt:</strong> peça para mostrar cada passo da igualdade e não apenas o resultado final.
+          </p>
+          <pre class="prompt-block" id="prompt-eq-text" aria-hidden="true">Sou aluno(a) do ensino médio. Explique como resolver equação do primeiro grau com uma incógnita, mostrando o que significa “isolar x” e por que somamos ou subtraímos dos dois lados. Dê um exemplo: 3x - 7 = 8, com todos os passos. Em seguida, explique em linhas gerais o que é um sistema de duas equações lineares e resolva um exemplo simples por substituição, com verificação dos valores encontrados.</pre>
+          <button type="button" class="btn copy-prompt-btn" data-target="prompt-eq-text">Copiar prompt ideal</button>
+
+          <div class="exercise-block">
+            <h4>Questão prática</h4>
+            <p>Resolva a equação: <em>5x + 9 = 2x - 3</em>.</p>
+            <details class="solution-details">
+              <summary>Ver resolução</summary>
+              <p><strong>Resolução:</strong> <em>5x - 2x = -3 - 9</em> ⇒ <em>3x = -12</em> ⇒ <em>x = -4</em>. Verificação: <em>5(-4) + 9 = -11</em> e <em>2(-4) - 3 = -11</em>. ✓</p>
+            </details>
+          </div>
+        </article>
+
+        <article class="math-topic" id="mat-porcentagem">
+          <h3>Porcentagem e regra de três</h3>
+          <p>
+            <strong>Porcentagem</strong> “por cento” compara uma parte com 100: por exemplo, 25% de 200 é a mesma ideia que <em>(25/100) × 200</em>.
+            A <strong>regra de três</strong> relaciona grandezas proporcionais: montamos uma tabela com pares correspondentes e isolamos o valor desconhecido.
+          </p>
+          <p class="muted">
+            <strong>Dica de prompt:</strong> peça para explicar quando usar regra de três simples e um exemplo com porcentagem no cotidiano (desconto, nota, tempo).
+          </p>
+          <pre class="prompt-block" id="prompt-pct-text" aria-hidden="true">Sou aluno(a) do ensino médio. Explique porcentagem como fração de 100 e como calcular x% de um valor. Explique regra de três simples com um exemplo de proporção (por exemplo, preço por quantidade). Proponha um problema: “Em uma turma de 40 alunos, 15% faltaram; quantos faltaram?” e outro com regra de três (ex.: se 3 livros custam R$ 45, quanto custam 5 na mesma proporção?). Mostre resolução passo a passo em cada caso.</pre>
+          <button type="button" class="btn copy-prompt-btn" data-target="prompt-pct-text">Copiar prompt ideal</button>
+
+          <div class="exercise-block">
+            <h4>Questão prática</h4>
+            <p><strong>a)</strong> Calcule 12% de 250.<br /><strong>b)</strong> Se 8 horas correspondem a 100% de uma carga de trabalho, quantas horas correspondem a 35%?</p>
+            <details class="solution-details">
+              <summary>Ver resolução</summary>
+              <p><strong>a)</strong> <em>12% de 250 = (12/100) × 250 = 0,12 × 250 = 30</em>.</p>
+              <p><strong>b)</strong> Regra de três: <em>100% → 8 h</em>, <em>35% → x</em>. Então <em>x = (35 × 8) / 100 = 2,8</em> horas (2 h 48 min).</p>
+            </details>
+          </div>
+        </article>
+      </section>
+
       <section id="quiz" class="section container panel reveal">
         <h2>Mini quiz: você está pronto para usar IA?</h2>
         <form class="quiz" id="ai-quiz">
@@ -250,6 +362,6 @@
       OFF
     </button>
 
-    <script src="script.js?v=2006a"></script>
+    <script src="script.js?v=2007a"></script>
   </body>
 </html>

@@ -36,7 +36,9 @@ if (toggleButton && menu) {
 
 // Add glitch-text source to interactive elements.
 document
-  .querySelectorAll(".menu a, .btn, .tip-button, .faq summary, .audio-orb")
+  .querySelectorAll(
+    ".menu a, .btn, .tip-button, .faq summary, .audio-orb, .copy-prompt-btn, .math-subnav-link"
+  )
   .forEach((element) => {
     element.setAttribute("data-glitch", element.textContent?.trim() || "");
   });
@@ -382,3 +384,25 @@ if (constellationCanvas) {
     createPoints();
   });
 }
+
+document.querySelectorAll(".copy-prompt-btn").forEach((button) => {
+  button.addEventListener("click", async () => {
+    const id = button.getAttribute("data-target");
+    const source = id ? document.getElementById(id) : null;
+    const text = source?.textContent?.trim() || "";
+    if (!text) return;
+    const original = button.textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+      button.textContent = "Copiado!";
+      setTimeout(() => {
+        button.textContent = original;
+      }, 2200);
+    } catch {
+      button.textContent = "Tente de novo";
+      setTimeout(() => {
+        button.textContent = original;
+      }, 2000);
+    }
+  });
+});

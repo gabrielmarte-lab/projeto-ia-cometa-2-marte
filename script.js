@@ -1,12 +1,17 @@
-/* Topo na entrada (sem âncora): mobile + scroll-behavior:smooth costumam abrir no meio. */
+/* Rolagem no #scroll-root: a janela não rola (evita Safari/Chrome mobile abrirem no meio). */
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
+
+const scrollRoot = document.getElementById("scroll-root");
 
 const shouldStartAtTop = () => !location.hash || location.hash === "#";
 
 const forceScrollTop = () => {
   if (!shouldStartAtTop()) return;
+  if (scrollRoot) {
+    scrollRoot.scrollTop = 0;
+  }
   const se = document.scrollingElement;
   if (se) se.scrollTop = 0;
   document.documentElement.scrollTop = 0;
@@ -42,7 +47,7 @@ window.addEventListener("load", () => {
   requestAnimationFrame(() => {
     requestAnimationFrame(forceScrollTop);
   });
-  [0, 50, 150, 350, 600, 1000, 1600].forEach((ms) => {
+  [0, 100, 400, 900].forEach((ms) => {
     setTimeout(forceScrollTop, ms);
   });
 });
@@ -54,7 +59,7 @@ if (vv) {
     "resize",
     () => {
       if (!shouldStartAtTop()) return;
-      if (Date.now() - boot < 4000) forceScrollTop();
+      if (Date.now() - boot < 3500) forceScrollTop();
     },
     { passive: true }
   );
@@ -115,19 +120,31 @@ document
 
 if (progressBar) {
   const updateProgress = () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    let scrollTop;
+    let docHeight;
+    if (scrollRoot) {
+      scrollTop = scrollRoot.scrollTop;
+      docHeight = scrollRoot.scrollHeight - scrollRoot.clientHeight;
+    } else {
+      scrollTop = window.scrollY;
+      docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    }
     const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
     progressBar.style.width = `${progress}%`;
   };
 
-  window.addEventListener("scroll", updateProgress, { passive: true });
+  const scrollTarget = scrollRoot || window;
+  scrollTarget.addEventListener("scroll", updateProgress, { passive: true });
   updateProgress();
 }
 
 if (revealElements.length > 0) {
   // threshold 0.16 fails for tall sections: intersectionRatio = visibleHeight/totalHeight
   // can stay below 16% on mobile. Use 0 so any visible strip reveals the whole block.
+  const revealOpts = { threshold: 0, rootMargin: "80px 0px 80px 0px" };
+  if (scrollRoot) {
+    revealOpts.root = scrollRoot;
+  }
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -137,7 +154,7 @@ if (revealElements.length > 0) {
         }
       });
     },
-    { threshold: 0, rootMargin: "80px 0px 80px 0px" }
+    revealOpts
   );
 
   const revealNow = (el) => {
@@ -231,6 +248,7 @@ if (quizForm && quizResult) {
       quizModal.classList.add("show");
       quizModal.setAttribute("aria-hidden", "false");
       document.body.style.overflow = "hidden";
+      if (scrollRoot) scrollRoot.style.overflow = "hidden";
     }
   });
 }
@@ -240,6 +258,7 @@ if (closeQuizModalButton && quizModal) {
     quizModal.classList.remove("show");
     quizModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    if (scrollRoot) scrollRoot.style.overflow = "";
   });
 }
 
@@ -249,6 +268,7 @@ if (quizModal) {
       quizModal.classList.remove("show");
       quizModal.setAttribute("aria-hidden", "true");
       document.body.style.overflow = "";
+      if (scrollRoot) scrollRoot.style.overflow = "";
     }
   });
 }
@@ -258,6 +278,7 @@ window.addEventListener("keydown", (event) => {
     quizModal.classList.remove("show");
     quizModal.setAttribute("aria-hidden", "true");
     document.body.style.overflow = "";
+    if (scrollRoot) scrollRoot.style.overflow = "";
   }
 });
 

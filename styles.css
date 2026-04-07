@@ -26,9 +26,12 @@ html {
   scroll-behavior: smooth;
   overflow-x: clip;
   overscroll-behavior-x: none;
+  /* Evita que o navegador “puxe” a rolagem quando imagens/fontes carregam (muito comum no mobile). */
+  overflow-anchor: none;
 }
 
 body {
+  overflow-anchor: none;
   font-family: "Inter", sans-serif;
   color: var(--text);
   background:

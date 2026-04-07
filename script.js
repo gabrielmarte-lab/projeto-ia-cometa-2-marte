@@ -1,27 +1,37 @@
-/* Evita abrir no meio/fim da página (restauração de scroll) e mantém o topo na entrada sem âncora. */
+/* Topo na entrada (sem âncora): mobile costuma restaurar scroll ou “ancorar” após layout. */
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
 
-const scrollPageTopUnlessHash = () => {
-  if (!location.hash || location.hash === "#") {
-    window.scrollTo(0, 0);
-  }
+const shouldStartAtTop = () => !location.hash || location.hash === "#";
+
+const forceScrollTop = () => {
+  if (!shouldStartAtTop()) return;
+  window.scrollTo({ left: 0, top: 0, behavior: "auto" });
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
 };
 
-scrollPageTopUnlessHash();
+forceScrollTop();
+
+document.addEventListener("DOMContentLoaded", forceScrollTop);
 
 window.addEventListener(
   "pageshow",
   (event) => {
-    if (event.persisted) scrollPageTopUnlessHash();
+    if (event.persisted) forceScrollTop();
   },
   { passive: true }
 );
 
 window.addEventListener("load", () => {
-  scrollPageTopUnlessHash();
-  requestAnimationFrame(scrollPageTopUnlessHash);
+  forceScrollTop();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(forceScrollTop);
+  });
+  [0, 80, 200, 400, 700].forEach((ms) => {
+    setTimeout(forceScrollTop, ms);
+  });
 });
 
 const toggleButton = document.querySelector(".menu-toggle[aria-controls='menu']");

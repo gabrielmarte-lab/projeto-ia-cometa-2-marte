@@ -3,6 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <script>
+      /* Antes de qualquer paint: evita restaurar scroll no meio da página (comum no mobile). */
+      (function () {
+        if (location.hash && location.hash !== "#") return;
+        if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+      })();
+    </script>
+    <script>
       /* GitHub Pages: se a URL for .../nome-do-repo (sem barra no fim), caminhos como
          "assets/x.svg" viram /assets/x.svg no dominio e as imagens quebram (aparece só o alt). */
       (function () {
@@ -35,7 +42,7 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=2007f" />
+    <link rel="stylesheet" href="styles.css?v=2007g" />
     <noscript>
       <style>
         .reveal {
@@ -316,7 +323,7 @@
           <h3>Função quadrática e gráfico (parábola)</h3>
           <figure class="math-topic-visual">
             <img
-              src="assets/mat-quadratica.svg?v=2007f"
+              src="assets/mat-quadratica.svg?v=2007g"
               alt="Gráfico da parábola com zeros em x igual a 2 e 3."
               width="640"
               height="360"
@@ -548,6 +555,6 @@
       OFF
     </button>
 
-    <script src="script.js?v=2007f"></script>
+    <script src="script.js?v=2007g"></script>
   </body>
 </html>

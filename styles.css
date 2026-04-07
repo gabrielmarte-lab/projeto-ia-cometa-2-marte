@@ -28,6 +28,14 @@ html {
   overscroll-behavior-x: none;
   /* Evita que o navegador “puxe” a rolagem quando imagens/fontes carregam (muito comum no mobile). */
   overflow-anchor: none;
+  scroll-padding-top: 0;
+}
+
+/* scroll-behavior: smooth no :root faz o mobile “lutar” com scrollTo/restore e abrir no meio da página. */
+@media (hover: none), (pointer: coarse), (max-width: 900px) {
+  html {
+    scroll-behavior: auto !important;
+  }
 }
 
 body {

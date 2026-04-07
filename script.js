@@ -1,4 +1,4 @@
-/* Topo na entrada (sem âncora): mobile costuma restaurar scroll ou “ancorar” após layout. */
+/* Topo na entrada (sem âncora): mobile + scroll-behavior:smooth costumam abrir no meio. */
 if ("scrollRestoration" in history) {
   history.scrollRestoration = "manual";
 }
@@ -7,9 +7,19 @@ const shouldStartAtTop = () => !location.hash || location.hash === "#";
 
 const forceScrollTop = () => {
   if (!shouldStartAtTop()) return;
-  window.scrollTo({ left: 0, top: 0, behavior: "auto" });
+  const se = document.scrollingElement;
+  if (se) se.scrollTop = 0;
   document.documentElement.scrollTop = 0;
   document.body.scrollTop = 0;
+  window.scrollTo(0, 0);
+  const hero = document.getElementById("top");
+  if (hero) {
+    try {
+      hero.scrollIntoView({ block: "start", behavior: "instant" });
+    } catch {
+      hero.scrollIntoView({ block: "start", behavior: "auto" });
+    }
+  }
 };
 
 forceScrollTop();
@@ -18,8 +28,11 @@ document.addEventListener("DOMContentLoaded", forceScrollTop);
 
 window.addEventListener(
   "pageshow",
-  (event) => {
-    if (event.persisted) forceScrollTop();
+  () => {
+    if (shouldStartAtTop()) {
+      forceScrollTop();
+      setTimeout(forceScrollTop, 0);
+    }
   },
   { passive: true }
 );
@@ -29,10 +42,31 @@ window.addEventListener("load", () => {
   requestAnimationFrame(() => {
     requestAnimationFrame(forceScrollTop);
   });
-  [0, 80, 200, 400, 700].forEach((ms) => {
+  [0, 50, 150, 350, 600, 1000, 1600].forEach((ms) => {
     setTimeout(forceScrollTop, ms);
   });
 });
+
+const boot = Date.now();
+const vv = window.visualViewport;
+if (vv) {
+  vv.addEventListener(
+    "resize",
+    () => {
+      if (!shouldStartAtTop()) return;
+      if (Date.now() - boot < 4000) forceScrollTop();
+    },
+    { passive: true }
+  );
+}
+
+window.addEventListener(
+  "orientationchange",
+  () => {
+    if (shouldStartAtTop()) setTimeout(forceScrollTop, 100);
+  },
+  { passive: true }
+);
 
 const toggleButton = document.querySelector(".menu-toggle[aria-controls='menu']");
 const menu = document.querySelector(".menu");

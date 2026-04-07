@@ -1,3 +1,29 @@
+/* Evita abrir no meio/fim da página (restauração de scroll) e mantém o topo na entrada sem âncora. */
+if ("scrollRestoration" in history) {
+  history.scrollRestoration = "manual";
+}
+
+const scrollPageTopUnlessHash = () => {
+  if (!location.hash || location.hash === "#") {
+    window.scrollTo(0, 0);
+  }
+};
+
+scrollPageTopUnlessHash();
+
+window.addEventListener(
+  "pageshow",
+  (event) => {
+    if (event.persisted) scrollPageTopUnlessHash();
+  },
+  { passive: true }
+);
+
+window.addEventListener("load", () => {
+  scrollPageTopUnlessHash();
+  requestAnimationFrame(scrollPageTopUnlessHash);
+});
+
 const toggleButton = document.querySelector(".menu-toggle[aria-controls='menu']");
 const menu = document.querySelector(".menu");
 const progressBar = document.querySelector(".reading-progress");

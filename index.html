@@ -2,6 +2,27 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      /* GitHub Pages: se a URL for .../nome-do-repo (sem barra no fim), caminhos como
+         "assets/x.svg" viram /assets/x.svg no dominio e as imagens quebram (aparece só o alt). */
+      (function () {
+        var host = location.hostname;
+        if (!host || host === "localhost" || host === "127.0.0.1") return;
+        if (!host.endsWith("github.io")) return;
+        var segs = location.pathname.split("/").filter(Boolean);
+        if (segs.length === 0) return;
+        var first = segs[0];
+        if (/\.html?$/i.test(first)) return;
+        var base = document.createElement("base");
+        base.href = "/" + first + "/";
+        var charset = document.querySelector("meta[charset]");
+        if (charset && charset.parentNode) {
+          charset.parentNode.insertBefore(base, charset.nextSibling);
+        } else {
+          document.head.insertBefore(base, document.head.firstChild);
+        }
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
@@ -14,7 +35,7 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=2007c" />
+    <link rel="stylesheet" href="styles.css?v=2007d" />
     <noscript>
       <style>
         .reveal {
@@ -191,7 +212,7 @@
         </div>
       </section>
 
-      <section id="matematica" class="section container panel reveal">
+      <section id="matematica" class="section container panel">
         <h2>Matemática e prompts na IA</h2>
         <p class="muted">
           Nesta área você encontra conteúdos de matemática do ensino médio e orientações para usar
@@ -234,7 +255,7 @@
           <figure class="math-topic-visual">
             <img
               src="assets/mat-afim.svg"
-              alt="Gráfico esquemático da reta da função f de x igual a menos x mais quatro, decrescente, com destaque nos pontos zero vírgula quatro e dois vírgula dois."
+              alt="Gráfico da reta f(x) = -x + 4 no plano cartesiano."
               width="640"
               height="360"
               loading="eager"
@@ -296,7 +317,7 @@
           <figure class="math-topic-visual">
             <img
               src="assets/mat-quadratica.svg"
-              alt="Gráfico esquemático de parábola com concavidade para cima cruzando o eixo horizontal nos pontos x igual a 2 e x igual a 3."
+              alt="Gráfico da parábola com zeros em x igual a 2 e 3."
               width="640"
               height="360"
               loading="eager"
@@ -360,7 +381,7 @@
           <figure class="math-topic-visual">
             <img
               src="assets/mat-equacoes.svg"
-              alt="Ilustração de balança: lado esquerdo cinco x mais nove e lado direito dois x menos três, representando igualdade na equação."
+              alt="Ilustração em forma de balança: 5x + 9 e 2x - 3 nos dois lados."
               width="640"
               height="360"
               loading="eager"
@@ -419,7 +440,7 @@
           <figure class="math-topic-visual">
             <img
               src="assets/mat-porcentagem.svg"
-              alt="Barra de cem por cento com parte destacada para doze por cento e esquema de regra de três com cem por cento correspondendo a oito horas."
+              alt="Esquema de porcentagem em barra e regra de três com horas."
               width="640"
               height="360"
               loading="eager"
@@ -554,6 +575,6 @@
       OFF
     </button>
 
-    <script src="script.js?v=2007c"></script>
+    <script src="script.js?v=2007d"></script>
   </body>
 </html>

@@ -842,7 +842,7 @@ body.cursor-on-clickable .cursor-ring {
 
 .math-topic-visual {
   margin: 1rem 0 0.25rem;
-  padding: 0;
+  padding: 0.65rem 0.65rem 0;
   border: 1px solid rgba(255, 255, 255, 0.18);
   border-radius: 4px;
   overflow: hidden;
@@ -860,6 +860,8 @@ body.cursor-on-clickable .cursor-ring {
   object-fit: contain;
   object-position: center center;
   background: rgba(8, 18, 38, 0.35);
+  margin: 0 auto;
+  padding: 0.35rem 0 0;
 }
 
 .math-topic-caption {

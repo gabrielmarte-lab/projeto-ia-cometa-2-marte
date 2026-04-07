@@ -56,6 +56,8 @@ if (progressBar) {
 }
 
 if (revealElements.length > 0) {
+  // threshold 0.16 fails for tall sections: intersectionRatio = visibleHeight/totalHeight
+  // can stay below 16% on mobile. Use 0 so any visible strip reveals the whole block.
   const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
@@ -65,10 +67,56 @@ if (revealElements.length > 0) {
         }
       });
     },
-    { threshold: 0.16 }
+    { threshold: 0, rootMargin: "80px 0px 80px 0px" }
   );
 
-  revealElements.forEach((el) => revealObserver.observe(el));
+  const revealNow = (el) => {
+    if (!el.classList.contains("show")) {
+      el.classList.add("show");
+      revealObserver.unobserve(el);
+    }
+  };
+
+  const revealIfInViewport = (el) => {
+    if (el.classList.contains("show")) return;
+    const rect = el.getBoundingClientRect();
+    const vh = window.innerHeight || document.documentElement.clientHeight;
+    if (rect.top < vh && rect.bottom > 0) {
+      revealNow(el);
+    }
+  };
+
+  const revealHashSection = () => {
+    if (!location.hash) return;
+    try {
+      const el = document.querySelector(location.hash);
+      if (el?.classList?.contains("reveal")) {
+        revealNow(el);
+      }
+    } catch {
+      /* invalid hash selector */
+    }
+  };
+
+  revealElements.forEach((el) => {
+    revealObserver.observe(el);
+    revealIfInViewport(el);
+  });
+
+  revealHashSection();
+  window.addEventListener("hashchange", revealHashSection);
+
+  window.addEventListener("load", () => {
+    revealElements.forEach(revealIfInViewport);
+    revealHashSection();
+  });
+
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      revealElements.forEach(revealIfInViewport);
+      revealHashSection();
+    });
+  });
 }
 
 tipButtons.forEach((button) => {

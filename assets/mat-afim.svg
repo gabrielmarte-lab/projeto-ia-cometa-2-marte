@@ -1,0 +1,29 @@
+<svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+  <defs>
+    <linearGradient id="gaf" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#081226"/>
+      <stop offset="100%" stop-color="#0E1D3D"/>
+    </linearGradient>
+    <pattern id="gridaf" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M24 0H0V24" stroke="#43EFFF" stroke-opacity="0.12" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="640" height="360" rx="12" fill="url(#gaf)"/>
+  <rect x="12" y="12" width="616" height="336" rx="10" fill="url(#gridaf)" stroke="#43EFFF" stroke-opacity="0.35" stroke-width="1.5"/>
+  <g transform="translate(72,280)">
+    <line x1="0" y1="0" x2="420" y2="0" stroke="#E8E8E8" stroke-width="2"/>
+    <line x1="0" y1="0" x2="0" y2="-220" stroke="#E8E8E8" stroke-width="2"/>
+    <polygon points="420,0 410,-6 410,6" fill="#E8E8E8"/>
+    <polygon points="0,-220 -6,-210 6,-210" fill="#E8E8E8"/>
+    <text x="400" y="22" fill="#9F7BFF" font-size="13" font-family="Inter, Arial, sans-serif">x</text>
+    <text x="-28" y="-200" fill="#9F7BFF" font-size="13" font-family="Inter, Arial, sans-serif">y</text>
+    <!-- f(x) = -x + 4; 84px/unit x, 40px/unit y -->
+    <line x1="0" y1="-160" x2="336" y2="0" stroke="#6BE8FF" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="0" cy="-160" r="6" fill="#6BE8FF" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="168" cy="-80" r="6" fill="#6BE8FF" stroke="#ffffff" stroke-width="1.5"/>
+    <text x="8" y="-172" fill="#B393FF" font-size="11" font-family="Inter, Arial, sans-serif">(0, 4)</text>
+    <text x="176" y="-88" fill="#B393FF" font-size="11" font-family="Inter, Arial, sans-serif">(2, 2)</text>
+  </g>
+  <text x="320" y="32" fill="#6BE8FF" font-size="15" font-family="Orbitron, Arial, sans-serif" text-anchor="middle">FUNCAO AFIM - f(x) = -x + 4</text>
+  <text x="320" y="348" fill="#888" font-size="11" font-family="Inter, Arial, sans-serif" text-anchor="middle">Reta decrescente - a = -1</text>
+</svg>

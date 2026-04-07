@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Projeto escolar interativo em tema sci-fi sobre IA: conceito, funcionamento, estudo inteligente e segurança digital."
+      content="Projeto escolar sci-fi sobre IA: conceito, funcionamento, estudo seguro, matemática com prompts e exercícios passo a passo."
     />
     <title>Projeto Nova | Entendendo IA</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@400;600&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=2007a" />
+    <link rel="stylesheet" href="styles.css?v=2007b" />
   </head>
   <body>
     <div class="reading-progress" aria-hidden="true"></div>
@@ -192,6 +192,28 @@
           <em>exemplos e verificação</em>. Sempre revise o que a IA responder e confira com professor ou livro.
         </p>
 
+        <div class="math-recommendations" role="note">
+          <h3 class="math-recommendations-title">Recomendações antes de usar a IA</h3>
+          <ul class="math-recommendations-list">
+            <li>
+              <strong>Leia a resposta com calma.</strong> Se algo parecer estranho ou muito diferente da aula,
+              anote a dúvida e pergunte ao professor — a IA pode errar contas ou símbolos.
+            </li>
+            <li>
+              <strong>Use o prompt como ponto de partida,</strong> não como cola: tente refazer o exercício no
+              caderno depois de entender os passos.
+            </li>
+            <li>
+              <strong>Peça verificação no próprio prompt</strong> (por exemplo: “confira se os sinais estão
+              corretos” ou “mostre a verificação substituindo o valor de x”).
+            </li>
+            <li>
+              <strong>Não envie dados pessoais</strong> (nome completo da escola com endereço, telefone, fotos)
+              junto com a conta — use só o enunciado matemático.
+            </li>
+          </ul>
+        </div>
+
         <nav class="math-subnav" aria-label="Tópicos de matemática">
           <a href="#mat-afim" class="math-subnav-link">Função afim</a>
           <a href="#mat-quadratica" class="math-subnav-link">Função quadrática</a>
@@ -201,6 +223,19 @@
 
         <article class="math-topic" id="mat-afim">
           <h3>Função afim e gráfico na reta</h3>
+          <figure class="math-topic-visual">
+            <img
+              src="assets/mat-afim.svg"
+              alt="Gráfico esquemático da reta da função f de x igual a menos x mais quatro, decrescente, com destaque nos pontos zero vírgula quatro e dois vírgula dois."
+              width="640"
+              height="360"
+              loading="lazy"
+            />
+            <figcaption class="math-topic-caption">
+              Visual da reta <em>f(x) = −x + 4</em>: ela cruza o eixo vertical em 4 e “desce” porque
+              <em>a</em> é negativo.
+            </figcaption>
+          </figure>
           <p>
             Uma <strong>função afim</strong> tem forma <em>f(x) = ax + b</em>, com <em>a</em> e <em>b</em> reais.
             O coeficiente <em>a</em> indica a inclinação da reta; <em>b</em> é onde a reta corta o eixo <em>y</em>
@@ -217,14 +252,51 @@
             <h4>Questão prática</h4>
             <p>Seja <em>f(x) = -x + 4</em>. Calcule <em>f(0)</em>, <em>f(2)</em> e diga se a reta é crescente ou decrescente.</p>
             <details class="solution-details">
-              <summary>Ver resolução</summary>
-              <p><strong>Resolução:</strong> <em>f(0) = -0 + 4 = 4</em>. <em>f(2) = -2 + 4 = 2</em>. Como <em>a = -1 &lt; 0</em>, a função é <strong>decrescente</strong> (a reta “desce” à medida que <em>x</em> aumenta).</p>
+              <summary>Ver resolução passo a passo</summary>
+              <ol class="solution-steps">
+                <li>
+                  <strong>O que a questão pede?</strong> Substituir <em>x</em> por 0 e por 2 na expressão
+                  <em>f(x) = −x + 4</em> e decidir se a reta sobe ou desce (crescência).
+                </li>
+                <li>
+                  <strong>Calcular <em>f(0)</em>:</strong> onde aparece <em>x</em>, colocamos 0.
+                  Fica <em>f(0) = −(0) + 4 = 0 + 4 = 4</em>. Ou seja, o gráfico passa pelo ponto
+                  <em>(0, 4)</em> no eixo vertical.
+                </li>
+                <li>
+                  <strong>Calcular <em>f(2)</em>:</strong> substituímos <em>x</em> por 2:
+                  <em>f(2) = −2 + 4 = 2</em>. O ponto é <em>(2, 2)</em>.
+                </li>
+                <li>
+                  <strong>Crescência:</strong> na forma <em>f(x) = ax + b</em>, o número que multiplica
+                  <em>x</em> é <em>a = −1</em>. Se <em>a &gt; 0</em>, a reta sobe; se <em>a &lt; 0</em>, desce.
+                  Aqui <em>a</em> é negativo, então a função é <strong>decrescente</strong>: quando
+                  <em>x</em> aumenta, <em>f(x)</em> diminui.
+                </li>
+                <li>
+                  <strong>Conferência rápida:</strong> de <em>(0, 4)</em> para <em>(2, 2)</em>, o
+                  <em>x</em> aumentou e o <em>y</em> diminuiu — combina com reta decrescente.
+                </li>
+              </ol>
             </details>
           </div>
         </article>
 
         <article class="math-topic" id="mat-quadratica">
           <h3>Função quadrática e gráfico (parábola)</h3>
+          <figure class="math-topic-visual">
+            <img
+              src="assets/mat-quadratica.svg"
+              alt="Gráfico esquemático de parábola com concavidade para cima cruzando o eixo horizontal nos pontos x igual a 2 e x igual a 3."
+              width="640"
+              height="360"
+              loading="lazy"
+            />
+            <figcaption class="math-topic-caption">
+              Ideia do gráfico de <em>f(x) = x² − 5x + 6</em>: a parábola toca o eixo <em>x</em> nos zeros
+              (aqui, 2 e 3).
+            </figcaption>
+          </figure>
           <p>
             Uma <strong>função quadrática</strong> tem forma <em>f(x) = ax² + bx + c</em>, com <em>a ≠ 0</em>.
             O gráfico é uma <strong>parábola</strong>. Se <em>a &gt; 0</em>, a concavidade volta para cima; se <em>a &lt; 0</em>, para baixo.
@@ -240,14 +312,54 @@
             <h4>Questão prática</h4>
             <p>Para <em>f(x) = x² - 5x + 6</em>, determine os zeros da função (valores de <em>x</em> para os quais <em>f(x) = 0</em>).</p>
             <details class="solution-details">
-              <summary>Ver resolução</summary>
-              <p><strong>Resolução:</strong> Queremos <em>x² - 5x + 6 = 0</em>. Fatorando: <em>(x - 2)(x - 3) = 0</em>, logo <em>x = 2</em> ou <em>x = 3</em>. Os zeros são <strong>2</strong> e <strong>3</strong>.</p>
+              <summary>Ver resolução passo a passo</summary>
+              <ol class="solution-steps">
+                <li>
+                  <strong>Traduzir o problema:</strong> “Zeros da função” são os valores de <em>x</em> que
+                  fazem <em>f(x) = 0</em>. Precisamos resolver <em>x² − 5x + 6 = 0</em>.
+                </li>
+                <li>
+                  <strong>Estratégia (fatoração):</strong> Procuramos dois números que <em>somem</em> −5 e
+                  <em>multipliquem</em> 6. Esses números são −2 e −3, porque
+                  <em>(−2) + (−3) = −5</em> e <em>(−2) × (−3) = 6</em>.
+                </li>
+                <li>
+                  <strong>Escrever na forma fatorada:</strong>
+                  <em>x² − 5x + 6 = (x − 2)(x − 3)</em>. (Multiplique mentalmente para conferir.)
+                </li>
+                <li>
+                  <strong>Usar a propriedade do produto zero:</strong> Se
+                  <em>(x − 2)(x − 3) = 0</em>, então <em>x − 2 = 0</em> ou <em>x − 3 = 0</em>. Não existe
+                  outro caso em números reais aqui.
+                </li>
+                <li>
+                  <strong>Isolar <em>x</em>:</strong> <em>x − 2 = 0</em> dá <em>x = 2</em>;
+                  <em>x − 3 = 0</em> dá <em>x = 3</em>. Os zeros são <strong>2</strong> e <strong>3</strong>.
+                </li>
+                <li>
+                  <strong>Verificação:</strong> <em>f(2) = 4 − 10 + 6 = 0</em> e
+                  <em>f(3) = 9 − 15 + 6 = 0</em>. Correto.
+                </li>
+              </ol>
             </details>
           </div>
         </article>
 
         <article class="math-topic" id="mat-equacoes">
           <h3>Equações (1º grau e ideia de sistema simples)</h3>
+          <figure class="math-topic-visual">
+            <img
+              src="assets/mat-equacoes.svg"
+              alt="Ilustração de balança: lado esquerdo cinco x mais nove e lado direito dois x menos três, representando igualdade na equação."
+              width="640"
+              height="360"
+              loading="lazy"
+            />
+            <figcaption class="math-topic-caption">
+              Lembrete visual: em uma equação, o que você faz de um lado pode repetir do outro para manter o
+              “equilíbrio”.
+            </figcaption>
+          </figure>
           <p>
             Uma <strong>equação do 1º grau</strong> na incógnita <em>x</em> pode ser reduzida a <em>ax + b = 0</em> (com <em>a ≠ 0</em>).
             Resolvemos isolando <em>x</em>: operações iguais dos dois lados mantêm a igualdade.
@@ -263,14 +375,48 @@
             <h4>Questão prática</h4>
             <p>Resolva a equação: <em>5x + 9 = 2x - 3</em>.</p>
             <details class="solution-details">
-              <summary>Ver resolução</summary>
-              <p><strong>Resolução:</strong> <em>5x - 2x = -3 - 9</em> ⇒ <em>3x = -12</em> ⇒ <em>x = -4</em>. Verificação: <em>5(-4) + 9 = -11</em> e <em>2(-4) - 3 = -11</em>. ✓</p>
+              <summary>Ver resolução passo a passo</summary>
+              <ol class="solution-steps">
+                <li>
+                  <strong>Meta:</strong> deixar só <em>x</em> de um lado. A equação é
+                  <em>5x + 9 = 2x − 3</em>.
+                </li>
+                <li>
+                  <strong>Juntar os termos em <em>x</em>:</strong> subtraímos <em>2x</em> dos dois lados
+                  (ou “passamos o <em>2x</em> para a esquerda trocando o sinal”). Fica
+                  <em>5x − 2x + 9 = −3</em>, ou seja <em>3x + 9 = −3</em>.
+                </li>
+                <li>
+                  <strong>Isolar o termo com <em>x</em>:</strong> subtraímos 9 dos dois lados:
+                  <em>3x = −3 − 9</em>, então <em>3x = −12</em>.
+                </li>
+                <li>
+                  <strong>Achar <em>x</em>:</strong> dividimos tudo por 3: <em>x = −12 ÷ 3 = −4</em>.
+                </li>
+                <li>
+                  <strong>Verificação (recomendado):</strong> no lado esquerdo,
+                  <em>5(−4) + 9 = −20 + 9 = −11</em>. No direito, <em>2(−4) − 3 = −8 − 3 = −11</em>.
+                  Os dois lados batem; a solução é <strong>−4</strong>.
+                </li>
+              </ol>
             </details>
           </div>
         </article>
 
         <article class="math-topic" id="mat-porcentagem">
           <h3>Porcentagem e regra de três</h3>
+          <figure class="math-topic-visual">
+            <img
+              src="assets/mat-porcentagem.svg"
+              alt="Barra de cem por cento com parte destacada para doze por cento e esquema de regra de três com cem por cento correspondendo a oito horas."
+              width="640"
+              height="360"
+              loading="lazy"
+            />
+            <figcaption class="math-topic-caption">
+              Porcentagem como “fatia” de 100; regra de três organiza grandezas que crescem ou diminuem juntas.
+            </figcaption>
+          </figure>
           <p>
             <strong>Porcentagem</strong> “por cento” compara uma parte com 100: por exemplo, 25% de 200 é a mesma ideia que <em>(25/100) × 200</em>.
             A <strong>regra de três</strong> relaciona grandezas proporcionais: montamos uma tabela com pares correspondentes e isolamos o valor desconhecido.
@@ -285,9 +431,43 @@
             <h4>Questão prática</h4>
             <p><strong>a)</strong> Calcule 12% de 250.<br /><strong>b)</strong> Se 8 horas correspondem a 100% de uma carga de trabalho, quantas horas correspondem a 35%?</p>
             <details class="solution-details">
-              <summary>Ver resolução</summary>
-              <p><strong>a)</strong> <em>12% de 250 = (12/100) × 250 = 0,12 × 250 = 30</em>.</p>
-              <p><strong>b)</strong> Regra de três: <em>100% → 8 h</em>, <em>35% → x</em>. Então <em>x = (35 × 8) / 100 = 2,8</em> horas (2 h 48 min).</p>
+              <summary>Ver resolução passo a passo</summary>
+              <p class="solution-part-label"><strong>Item (a) — 12% de 250</strong></p>
+              <ol class="solution-steps">
+                <li>
+                  <strong>Significado:</strong> 12% é a mesma coisa que <em>12 em cada 100</em>, ou a fração
+                  <em>12/100</em>.
+                </li>
+                <li>
+                  <strong>Montar a conta:</strong> “12% de 250” = <em>(12/100) × 250</em>. Também pode escrever
+                  <em>0,12 × 250</em> se preferir a forma decimal.
+                </li>
+                <li>
+                  <strong>Calcular:</strong> <em>250 ÷ 100 = 2,5</em> e <em>2,5 × 12 = 30</em> (ou
+                  <em>0,12 × 250 = 30</em> direto).
+                </li>
+                <li>
+                  <strong>Resposta:</strong> <strong>30</strong> (sem unidade aqui, é só o valor pedido).
+                </li>
+              </ol>
+              <p class="solution-part-label"><strong>Item (b) — 35% de 8 horas</strong></p>
+              <ol class="solution-steps">
+                <li>
+                  <strong>Interpretação:</strong> 8 horas representam 100% da carga. Queremos 35% desse tempo.
+                </li>
+                <li>
+                  <strong>Regra de três (proporção):</strong> se 100% corresponde a 8 h, então 35% corresponde
+                  a <em>x</em> h. Em linha: <em>100/8 = 35/x</em> ou, de forma direta,
+                  <em>x = (35 × 8) / 100</em>.
+                </li>
+                <li>
+                  <strong>Conta:</strong> <em>35 × 8 = 280</em> e <em>280 ÷ 100 = 2,8</em> horas.
+                </li>
+                <li>
+                  <strong>Em horas e minutos (opcional):</strong> 0,8 h = <em>0,8 × 60 = 48</em> minutos.
+                  Resultado: <strong>2 h 48 min</strong> (ou <strong>2,8 h</strong> se o enunciado aceitar decimal).
+                </li>
+              </ol>
             </details>
           </div>
         </article>
@@ -362,6 +542,6 @@
       OFF
     </button>
 
-    <script src="script.js?v=2007a"></script>
+    <script src="script.js?v=2007b"></script>
   </body>
 </html>

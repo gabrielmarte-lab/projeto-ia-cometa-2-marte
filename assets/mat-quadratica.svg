@@ -1,33 +1,38 @@
 <svg width="640" height="360" viewBox="0 0 640 360" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
   <defs>
-    <linearGradient id="mqg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <linearGradient id="mqbg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#081226"/>
       <stop offset="100%" stop-color="#0E1D3D"/>
     </linearGradient>
-    <pattern id="mqgrid" width="24" height="24" patternUnits="userSpaceOnUse">
+    <pattern id="mqpat" width="24" height="24" patternUnits="userSpaceOnUse">
       <path d="M24 0H0V24" stroke="#43EFFF" stroke-opacity="0.12" stroke-width="1"/>
     </pattern>
   </defs>
-  <rect width="640" height="360" rx="12" fill="url(#mqg)"/>
-  <rect x="12" y="12" width="616" height="336" rx="10" fill="url(#mqgrid)" stroke="#9F7BFF" stroke-opacity="0.35" stroke-width="1.5"/>
-  <text x="320" y="32" fill="#9F7BFF" font-size="14" font-family="Orbitron, Arial, sans-serif" text-anchor="middle">PARABOLA f(x) = x^2 - 5x + 6</text>
-  <g transform="translate(80,300)">
-    <line x1="0" y1="0" x2="480" y2="0" stroke="#E8E8E8" stroke-width="2"/>
-    <line x1="40" y1="50" x2="40" y2="-250" stroke="#E8E8E8" stroke-width="2"/>
+  <rect width="640" height="360" rx="12" fill="url(#mqbg)"/>
+  <rect x="12" y="12" width="616" height="336" rx="10" fill="url(#mqpat)" stroke="#9F7BFF" stroke-opacity="0.35" stroke-width="1.5"/>
+  <text x="320" y="30" fill="#9F7BFF" font-size="14" font-family="Orbitron, Arial, sans-serif" text-anchor="middle">PARABOLA f(x) = x^2 - 5x + 6</text>
+  <!-- Origem (72,280); x em [0,5] -> 72 px/un; y_math para cima -> y_svg = -y_math * 32 -->
+  <g transform="translate(72,280)">
+    <line x1="0" y1="0" x2="380" y2="0" stroke="#E8E8E8" stroke-width="2"/>
+    <line x1="0" y1="0" x2="0" y2="-210" stroke="#E8E8E8" stroke-width="2"/>
+    <polygon points="380,0 370,-6 370,6" fill="#E8E8E8"/>
+    <polygon points="0,-210 -6,-200 6,-200" fill="#E8E8E8"/>
+    <text x="362" y="22" fill="#9F7BFF" font-size="13" font-family="Inter, Arial, sans-serif">x</text>
+    <text x="-26" y="-192" fill="#9F7BFF" font-size="13" font-family="Inter, Arial, sans-serif">y</text>
     <polyline
       fill="none"
       stroke="#6BE8FF"
-      stroke-width="3"
+      stroke-width="3.5"
       stroke-linejoin="round"
       stroke-linecap="round"
-      points="40,-228 116,-76 192,0 230,9.5 268,0 344,-76 420,-228"
+      points="0,-192 18,-154 36,-120 54,-90 72,-64 90,-42 108,-24 126,-10 144,0 162,6 180,8 198,6 216,0 234,-10 252,-24 270,-42 288,-64 306,-90 324,-120 342,-154 360,-192"
     />
-    <circle cx="192" cy="0" r="7" fill="#43EFFF" stroke="#ffffff" stroke-width="1.5"/>
-    <circle cx="268" cy="0" r="7" fill="#43EFFF" stroke="#ffffff" stroke-width="1.5"/>
-    <text x="175" y="20" fill="#B393FF" font-size="11" font-family="Inter, Arial, sans-serif">x = 2</text>
-    <text x="248" y="20" fill="#B393FF" font-size="11" font-family="Inter, Arial, sans-serif">x = 3</text>
-    <text x="430" y="22" fill="#9F7BFF" font-size="12" font-family="Inter, Arial, sans-serif">x</text>
-    <text x="18" y="-210" fill="#9F7BFF" font-size="12" font-family="Inter, Arial, sans-serif">y</text>
+    <circle cx="144" cy="0" r="7" fill="#43EFFF" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="216" cy="0" r="7" fill="#43EFFF" stroke="#ffffff" stroke-width="1.5"/>
+    <circle cx="180" cy="8" r="5" fill="#B393FF" fill-opacity="0.9" stroke="#ffffff" stroke-width="1"/>
+    <text x="132" y="20" fill="#B393FF" font-size="11" font-family="Inter, Arial, sans-serif">2</text>
+    <text x="204" y="20" fill="#B393FF" font-size="11" font-family="Inter, Arial, sans-serif">3</text>
+    <text x="168" y="26" fill="#E8E8E8" font-size="10" font-family="Inter, Arial, sans-serif">V</text>
   </g>
-  <text x="320" y="348" fill="#888" font-size="11" font-family="Inter, Arial, sans-serif" text-anchor="middle">Zeros: onde f(x) = 0 (cruza o eixo x)</text>
+  <text x="320" y="348" fill="#888" font-size="11" font-family="Inter, Arial, sans-serif" text-anchor="middle">Zeros em 2 e 3 - vertice V (minimo local)</text>
 </svg>
